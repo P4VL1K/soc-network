@@ -1,7 +1,23 @@
-import {ActionsTypes, SidebarType} from "./state";
+import {ActionsTypes, SidebarType} from "./store";
 
 
-const sidebarReducer = (state: Array<SidebarType>, action: ActionsTypes) => {
+
+
+export type initialStateSideBarType = {
+    sideBars:Array<SidebarType>
+}
+let initialState = {
+    sideBars:[
+        {id: 1, name: "Alex"},
+        {id: 2, name: "Oleg"},
+        {id: 3, name: "Irina"}
+    ]
+}
+
+
+
+
+const sidebarReducer = (state: initialStateSideBarType = initialState, action: ActionsTypes) => {
     return state
 }
 

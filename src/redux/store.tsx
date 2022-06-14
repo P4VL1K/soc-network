@@ -2,13 +2,14 @@ import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
 import profileReducer, {AddPostActionType, UpdateNewPostActionType} from "./propfile-reducer";
 import dialogsReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import sidebarReducer, {initialStateSideBarType} from "./sidebar-reducer";
 
 
 export type ProfilePageType = {
     posts: Array<PostDataType>
     newPostText: string
 }
+
 export type DialogsPageType = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessagesDataType>
@@ -21,7 +22,7 @@ export type SidebarType = {
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: Array<SidebarType>
+    sidebar: initialStateSideBarType
 }
 export type StoreType = {
     _state: StateType
@@ -64,11 +65,14 @@ const store: StoreType = {
             ],
             newMessageBody: 'ewdr',
         },
-        sidebar: [
-            {id: 1, name: "Alex"},
-            {id: 2, name: "Oleg"},
-            {id: 3, name: "Irina"}
-        ]
+        sidebar: {
+            sideBars: [
+                {id: 1, name: "Alex"},
+                {id: 2, name: "Oleg"},
+                {id: 3, name: "Irina"}
+            ]
+        }
+
     },
     _callSubscriber() {
     },
@@ -87,9 +91,6 @@ const store: StoreType = {
         this._callSubscriber()
     }
 }
-
-
-
 
 
 export default store
