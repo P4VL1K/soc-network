@@ -1,8 +1,5 @@
 import {ActionsTypes, SidebarType} from "./store";
 
-
-
-
 export type initialStateSideBarType = {
     sideBars:Array<SidebarType>
 }
@@ -13,9 +10,6 @@ let initialState = {
         {id: 3, name: "Irina"}
     ]
 }
-
-
-
 
 const sidebarReducer = (state: initialStateSideBarType = initialState, action: ActionsTypes) => {
     return state

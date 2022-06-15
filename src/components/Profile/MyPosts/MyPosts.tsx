@@ -13,7 +13,8 @@ export type PostDataType = {
 type MyPostsPropsType = {
     posts: Array<PostDataType>
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
 
@@ -23,15 +24,14 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => {
-            props.dispatch(addPostActionCreator())
+    let onAddPost = () => {
+         props.addPost()
     }
 
     let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value
-            let action = updateNewPostTextActionCreator(text);
-            props.dispatch(action)
+            props.updateNewPostText(text)
         }
     }
 
@@ -43,7 +43,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                         <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                     </div>
                     <div>
-                        <button onClick={addPost}>Add posts</button>
+                        <button onClick={onAddPost}>Add posts</button>
                     </div>
                 </div>
                 <div className={s.posts}>

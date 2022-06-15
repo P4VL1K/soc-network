@@ -3,7 +3,6 @@ import {ActionsTypes, DialogsPageType} from "./store";
 const NEW_MESSAGE_BODY = 'NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-
 export type sendMessageCreatorType = {
     type: 'SEND_MESSAGE'
 }
@@ -11,7 +10,6 @@ export type updateNewMessageBodyCreatorType = {
     type: 'NEW_MESSAGE_BODY'
     body: string
 }
-
 
 let initialState = {
         dialogs: [
@@ -52,16 +50,5 @@ export const updateNewMessageBodyCreator = (body: string): updateNewMessageBodyC
     type: NEW_MESSAGE_BODY,
     body: body
 })
-
-    // if (action.type === NEW_MESSAGE_BODY) {
-    //     state.newMessageBody = action.body;
-    // } else if (action.type === SEND_MESSAGE) {
-    //     let body = state.newMessageBody
-    //     state.newMessageBody = ''
-    //     state.messages.push({id: 6, message: body})
-    // }
-    //
-    // return state
-
 
 export default dialogsReducer
