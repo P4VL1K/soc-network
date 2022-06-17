@@ -1,8 +1,10 @@
 import React from "react";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {StoreType} from "../../redux/store";
 import Dialogs from "./Dialogs";
-import StoreContext from "../StoreContext";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {AppStateType} from "../../redux/redux-store";
+import {DialogsPageType} from "../../redux/store";
 
 export type DialogsDataType = {
     id: number
@@ -13,32 +15,30 @@ export type MessagesDataType = {
     message: string
 }
 
-type PropsType = {
-    // store: StoreType
+type mapStatePropsType = {
+    dialogsPage: DialogsPageType
+}
+type mapDispatchPropsType = {
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
 }
 
-const DialogsContainer = (props: PropsType) => {
-
-
-
-
-    return <StoreContext.Consumer>
-        {store => {
-            let state = store.getState().dialogsPage
-
-            let onSendMessageClick = () => {
-                store.dispatch(sendMessageCreator())
-            }
-            let onNewMessageChange = (body: string) => {
-                store.dispatch(updateNewMessageBodyCreator(body))
-            }
-       return  <Dialogs store={store}
-                 updateNewMessageBody={onNewMessageChange}
-                 sendMessage={onSendMessageClick}
-                 dialogsPage={state}/>
+let mapStateToProps = (state: AppStateType): mapStatePropsType => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
+}
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
+    return {
+        updateNewMessageBody: (body: string) => {
+            dispatch(updateNewMessageBodyCreator(body))
+        },
+        sendMessage: () => {
+            dispatch(sendMessageCreator())
         }
     }
-    </StoreContext.Consumer>
 }
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs) //законнектить Dialogs по правилам mapStateToProps и mapDispatchToProps
 
 export default DialogsContainer

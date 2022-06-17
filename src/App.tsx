@@ -6,11 +6,9 @@ import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-type PropsType = {
-    // store: any
-}
 
-const App = (props: PropsType) => {
+
+const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
