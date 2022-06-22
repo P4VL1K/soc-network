@@ -11,7 +11,7 @@ export type updateNewMessageBodyCreatorType = {
     body: string
 }
 
-let initialState = {
+let initialState: DialogsPageType = {
     dialogs: [
         {id: 1, name: "Pasha"},
         {id: 2, name: "Alexey"},
@@ -29,7 +29,7 @@ let initialState = {
     newMessageBody: 'ewdr',
 }
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
 
     switch (action.type) {
         case NEW_MESSAGE_BODY: {
