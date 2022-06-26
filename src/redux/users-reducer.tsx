@@ -35,30 +35,30 @@ export type InitialStateType = {
 
 let initialState: InitialStateType = {
     users: [
-        {
-            id: 1,
-            followed: false,
-            photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
-            fullName: "Dmitry",
-            status: "I am a boss",
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            followed: true,
-            photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
-            fullName: "Oleg",
-            status: "I am a boss too",
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 3,
-            followed: false,
-            photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
-            fullName: "Nikolay",
-            status: "I am a boss too",
-            location: {city: 'Kiev', country: 'Ukraine'}
-        },
+        // {
+        //     id: 1,
+        //     followed: false,
+        //     photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
+        //     fullName: "Dmitry",
+        //     status: "I am a boss",
+        //     location: {city: 'Minsk', country: 'Belarus'}
+        // },
+        // {
+        //     id: 2,
+        //     followed: true,
+        //     photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
+        //     fullName: "Oleg",
+        //     status: "I am a boss too",
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 3,
+        //     followed: false,
+        //     photoUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
+        //     fullName: "Nikolay",
+        //     status: "I am a boss too",
+        //     location: {city: 'Kiev', country: 'Ukraine'}
+        // },
     ]
 }
 
