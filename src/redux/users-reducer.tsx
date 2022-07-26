@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TODDLE_IS_FETCHING = 'TODDLE_IS_FETCHING'
 
 
 type FollowActionType = {
@@ -25,7 +26,11 @@ type SetTotalUsersCountType = {
     type: 'SET_TOTAL_USERS_COUNT'
     count: number
 }
-type ActionTypes = FollowActionType | UnfollowActionType | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
+type ToggleIsFetchingType = {
+    type: 'TODDLE_IS_FETCHING'
+    isFetching: boolean
+}
+type ActionTypes = FollowActionType | UnfollowActionType | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType | ToggleIsFetchingType
 
 type LocationPropsType = {
     city: string
@@ -44,13 +49,15 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 let initialState: InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 12,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -79,6 +86,8 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.count}
+        case TODDLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -89,5 +98,6 @@ export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users: Array<UserPropsType>) => ({type: SET_USERS, users})
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: TODDLE_IS_FETCHING, isFetching})
 
 export default usersReducer
