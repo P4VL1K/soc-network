@@ -1,8 +1,15 @@
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
-import {ActionsTypes, ProfilePageType} from "./store";
+import {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
+
+export type ProfilePageType = {
+    posts: Array<PostDataType>
+    newPostText: string
+    profile: null
+}
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 export type AddPostActionType = {
     type: 'ADD_POST'
@@ -11,6 +18,16 @@ export type UpdateNewPostActionType = {
     type: 'UPDATE_NEW_POST_TEXT'
     newText: string
 }
+export type SetUserProfileActionType = {
+    type: 'SET_USER_PROFILE'
+    profile: null
+}
+
+export type ActionsTypes =
+    AddPostActionType
+    | UpdateNewPostActionType
+    | sendMessageCreatorType
+    | updateNewMessageBodyCreatorType | SetUserProfileActionType
 
 
 let initialState = {
@@ -18,10 +35,11 @@ let initialState = {
         {id: 1, message: "Hi, how are you?", likesCount: 12},
         {id: 2, message: "It is my first post", likesCount: 12}
     ],
-    newPostText: "dgfd"
+    newPostText: "dgfd",
+    profile: null
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes):ProfilePageType => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostDataType = {
@@ -41,6 +59,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 newPostText: action.newText
             }
         }
+        case SET_USER_PROFILE: {
+            return {...state, profile: action.profile}
+        }
         default:
             return state
     }
@@ -51,5 +72,7 @@ export const updateNewPostTextActionCreator = (text: string): UpdateNewPostActio
     type: UPDATE_NEW_POST_TEXT,
     newText: text
 })
+export const setUserProfile = (profile: null): SetUserProfileActionType => ({type: "SET_USER_PROFILE", profile})
+
 
 export default profileReducer
