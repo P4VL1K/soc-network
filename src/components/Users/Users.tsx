@@ -2,6 +2,7 @@ import React from "react";
 import s from "./users.module.css";
 import {UserPropsType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 
 type UsersPropsType = {
@@ -44,10 +45,20 @@ export const   Users = (props: UsersPropsType) => {
                 <div>
                     {u.followed
                         ? <button onClick={() => {
-                            props.unfollow(u.id)
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {withCredentials: true, headers: {'API-KEY': '01490dda-1694-49c7-b3cb-3b5b50a91426'}})
+                                .then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.unfollow(u.id)
+                                    }
+                                })
                         }}>Unfollow</button>
                         : <button onClick={() => {
-                            props.follow(u.id)
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {withCredentials: true, headers: {'API-KEY': '01490dda-1694-49c7-b3cb-3b5b50a91426'}})
+                                .then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.follow(u.id)
+                                    }
+                                })
                         }}>Follow</button>}
                 </div>
                 </span>
