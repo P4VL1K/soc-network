@@ -1,5 +1,7 @@
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
 import {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type ProfilePageType = {
     posts: Array<PostDataType>
@@ -73,6 +75,13 @@ export const updateNewPostTextActionCreator = (text: string): UpdateNewPostActio
     newText: text
 })
 export const setUserProfile = (profile: null): SetUserProfileActionType => ({type: "SET_USER_PROFILE", profile})
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
 
 
 export default profileReducer
