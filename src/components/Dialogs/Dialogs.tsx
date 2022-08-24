@@ -14,7 +14,7 @@ export type MessagesDataType = {
     message: string
 }
 
-type PropsType = {
+export type PropsType = {
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
     dialogsPage: DialogsPageType
