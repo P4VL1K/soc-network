@@ -6,7 +6,6 @@ import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunk from "redux-thunk";
 
-
 export type AppStateType = ReturnType<typeof rootReducer>
 
 let rootReducer = combineReducers({

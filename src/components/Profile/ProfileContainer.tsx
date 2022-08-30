@@ -1,4 +1,4 @@
-import React, {Component, ComponentType} from 'react';
+import React, {Component} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -54,8 +54,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 // export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent)
 
 
-export default compose<ComponentType>(
+export default compose(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    withAuthRedirect
 )(ProfileContainer)
