@@ -1,10 +1,15 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileType} from "../Profile";
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = (props: ProfileType) => {
+type ProfileInfoType = {
+    profile: null
+    status: string
+    updateStatus: (status: string) => void
+}
+
+const ProfileInfo = (props: ProfileInfoType) => {
 
     if (!props.profile) {
         return <Preloader/>
@@ -15,7 +20,7 @@ const ProfileInfo = (props: ProfileType) => {
         {/*    <img src="https://avatarfiles.alphacoders.com/161/161380.png"/>*/}
         {/*</div>*/}
         <div className={s.descriptionBlock}>
-            <ProfileStatus status={'hello'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
     </div>
 }
