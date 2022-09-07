@@ -1,14 +1,10 @@
 import {ActionsTypes, DialogsPageType} from "./store";
 
-const NEW_MESSAGE_BODY = 'NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 export type sendMessageCreatorType = {
     type: 'SEND_MESSAGE'
-}
-export type updateNewMessageBodyCreatorType = {
-    type: 'NEW_MESSAGE_BODY'
-    body: string
+    newMessageBody: string
 }
 
 let initialState: DialogsPageType = {
@@ -25,24 +21,16 @@ let initialState: DialogsPageType = {
         {id: 3, message: "Perfect!"},
         {id: 4, message: "Yooo"},
         {id: 5, message: "Akulichhhh"},
-    ],
-    newMessageBody: 'ewdr',
+    ]
 }
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
 
     switch (action.type) {
-        case NEW_MESSAGE_BODY: {
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
-        }
         case SEND_MESSAGE: {
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}] //גלוסעמ push()
             }
         }
@@ -51,10 +39,6 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
     }
 }
 
-export const sendMessageCreator = (): sendMessageCreatorType => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body: string): updateNewMessageBodyCreatorType => ({
-    type: NEW_MESSAGE_BODY,
-    body: body
-})
+export const sendMessageCreator = (newMessageBody: string): sendMessageCreatorType => ({type: SEND_MESSAGE, newMessageBody})
 
 export default dialogsReducer

@@ -1,7 +1,7 @@
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
-import profileReducer, {AddPostActionType, UpdateNewPostActionType} from "./propfile-reducer";
-import dialogsReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
+import {AddPostActionType} from "./propfile-reducer";
+import dialogsReducer, {sendMessageCreatorType} from "./dialogs-reducer";
 import sidebarReducer, {initialStateSideBarType} from "./sidebar-reducer";
 
 
@@ -13,7 +13,6 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessagesDataType>
-    newMessageBody: string
 }
 export type SidebarType = {
     id: number
@@ -34,9 +33,7 @@ export type StoreType = {
 
 export type ActionsTypes =
     AddPostActionType
-    | UpdateNewPostActionType
     | sendMessageCreatorType
-    | updateNewMessageBodyCreatorType
 
 
 const store: StoreType = {
@@ -62,8 +59,7 @@ const store: StoreType = {
                 {id: 3, message: "Perfect!"},
                 {id: 4, message: "Yooo"},
                 {id: 5, message: "Akulichhhh"},
-            ],
-            newMessageBody: 'ewdr',
+            ]
         },
         sidebar: {
             sideBars: [
