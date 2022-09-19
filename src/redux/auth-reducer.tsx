@@ -1,7 +1,8 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppThunk} from "./redux-store";
-import {reducer} from "redux-form";
+import {stopSubmit} from "redux-form";
+import {FormAction} from "redux-form/lib/actions";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -17,7 +18,7 @@ type DataType = {
     login: string | null
 }
 
-export type ActionTypes = SetUserDataActionType
+export type ActionTypes = SetUserDataActionType | FormAction
 
 
 export type InitialStateType = {
@@ -65,6 +66,9 @@ export const login = (email: string, password: string, rememberMe: boolean): App
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
+            } else {
+                let message = response.data.data.message.length > 0 ? response.data.data.message[0] : 'some error'
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
 }

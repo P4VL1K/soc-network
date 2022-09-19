@@ -13,6 +13,8 @@ type PathParamsType = {
 type MapStatePropsType = {
     profile: null
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
@@ -29,7 +31,8 @@ class ProfileContainer extends Component<PropsType>{
         console.log('mount')
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '2'
+            // @ts-ignore
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -59,7 +62,9 @@ class ProfileContainer extends Component<PropsType>{
 //
 let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 //
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
