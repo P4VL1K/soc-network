@@ -9,30 +9,32 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./Login/Login";
 
 
+class  App extends React.Component {
 
-const App = () => {
+    render() {
 
-    return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() =>
-                        // @ts-ignore
-                        <DialogsContainer />}/>
-                    <Route path='/profile/:userId?' render={() =>
-                        // @ts-ignore
-                        <ProfileContainer />}/>
-                    <Route path='/users' render={() =>
-                        // @ts-ignore
-                        <UsersContainer />}/>
-                    <Route path='/login' render={() => <Login />}/>
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    <Navbar/>
+                    <div className='app-wrapper-content'>
+                        <Route path='/dialogs' render={() =>
+                            // @ts-ignore
+                            <DialogsContainer/>}/>
+                        <Route path='/profile/:userId?' render={() =>
+                            // @ts-ignore
+                            <ProfileContainer/>}/>
+                        <Route path='/users' render={() =>
+                            // @ts-ignore
+                            <UsersContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                    </div>
+                    {/*<Profile/>*/}
                 </div>
-                {/*<Profile/>*/}
-            </div>
-        </BrowserRouter>
-    );
-};
+            </BrowserRouter>
+        );
+    }
+}
 
 export default App;
